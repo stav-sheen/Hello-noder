@@ -1,0 +1,30 @@
+{
+  "name": "jenkins-integration-with-nodejs",
+  "version": "0.0.1",
+  "description": "A test repository for integrating CI/CD pipeline for a simple Node.js app with Jenkins",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha \"test/**/*.spec.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffminsungkim/jenkins-integration-with-nodejs.git"
+  },
+  "author": "JeffMinsungKim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeffminsungkim/jenkins-integration-with-nodejs/issues"
+  },
+  "homepage": "https://github.com/jeffminsungkim/jenkins-integration-with-nodejs#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  }
+}

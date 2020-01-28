@@ -18,6 +18,6 @@ node{
         }
     }
     stage('deploy container- run ansible playbook'){
-        sh 'ansible-playbook -i ./hosts ec2_playbook.yml'
+        sh 'sudo -u ec2-user ansible-playbook -i ./ansible/hosts ./ansible/ec2_playbook.yml'
     }
-}
+}}

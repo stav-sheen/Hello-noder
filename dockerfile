@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR ./hello-node
 
-COPY ./hello-node .
+COPY . .
 
 EXPOSE 3000
 

@@ -1,0 +1,28 @@
+---
+- hosts: hellonoderapp 
+  become: true
+  tasks:
+    - name: install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: pull default docker image
+      docker_image:
+        name: "stavsheen/hellonoder:latest"
+        source: pull
+    
+    - name: remove old app container   
+      docker_container:
+         name: hellonoder_app
+         state: absent
+
+    - name: restart a container
+      docker_container: 
+         name: hellonoder_app
+         image: stavsheen/hellonoder:latest
+         state: started
+         ports:
+           - "3000:3000"
+
+
+

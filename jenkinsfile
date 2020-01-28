@@ -1,0 +1,23 @@
+node{
+    
+    stage('checkout SCM'){
+        git url: 'https://github.com/stav-sheen/Hello-noder'
+    }
+    stage('Build docker image'){
+        customimage = docker.build("stavsheen/hellonoder")
+    }
+    stage('test image'){
+        customimage.inside{
+            sh 'npm test'
+        }
+    }
+    stage('push docker image'){
+        docker.withRegistry('https://registry.hub.docker.com', 'docker_cred'){
+            customimage.push("${env.BUILD_ID}")
+            customimage.push("latest")
+        }
+    }
+    stage('deploy container- run ansible playbook'){
+        sh 'ansible-playbook -i ./hosts ec2_playbook.yml'
+    }
+}

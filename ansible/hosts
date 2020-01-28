@@ -1,0 +1,5 @@
+[hellonoderapp]
+172.31.25.246
+
+[webserver:vars]
+ansible_python_interpreter=/usr/bin/python3

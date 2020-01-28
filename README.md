@@ -9,25 +9,42 @@ Docker,Jenkins,Ansible..
 servers built using AWS ec2 rhel8 instances.
 
 ## Prerequisits
-in order to have your app up and running one must have 2 servers.
-1.jenkins server: 
-- must have working jenkins software installed with all plugins for Ansible/Docker.
+In order to have your app up and running one must have 2 servers.
+1.Jenkins server: 
+- Must have working jenkins software installed with all plugins for Ansible/Docker.
 - Docker-ce installed.
 - Ansible 
-- both Jenkins and Ansible users have sudo permissions.
+- Both Jenkins and Ansible users have sudo permissions.
 2. app server:
 - Docker-ce.
 - Python3 installed (for Ansible.).
-- open ssh login for ec2-user of the jenkins server  
+- Open ssh login for ec2-user of the jenkins server  
 
+##instalation
+
+the app will almost run out the box just follow the following steps: 
+1.Clone repo
+```
+git clone https://github.com/stav-sheen/Hello-noder
+```
+2.Copy jenkinsfile to jenkins server pipeline
+3.Edit /ansible/hosts so that the IP written corresponds with your app servers
+address
+4.Edit the dockerhub part so that it will have your credentials and your repo in the pipeline. 
+jenkinsserver:8080> credentials>add >dockerhub user+password> credentials_ID
+ ```docker.withRegistry('https://registry.hub.docker.com', 'docker_cred')
+ ```
+ swap the "docker_cred" with your "credentials_ID".
+ 5. Run the pipeline!
+ 
 ## Docker
 Docker builds an image which already contains the running app. 
 Meaning : 
-- uses node base image 
-- copies app files to it. 
-- installs node dependencies. 
-- exposes port 3000 for use
-- finally, the image starts with CMD ["npm","start "]
+- Uses node base image 
+- Copies app files to it. 
+- Installs node dependencies. 
+- Exposes port 3000 for use
+- Finally, the image starts with CMD ["npm","start "]
 I.E - when the container is run the app is already on it and ready to go :)
 image repo in docker dockerhub:
 https://hub.docker.com/repository/docker/stavsheen/hellonoder
